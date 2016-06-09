@@ -45,6 +45,16 @@ RSpec.describe LeagueTable do
 
 	describe '#reset_standings' do
 		it "clears the teams array and assigns the standings again based on the matches array" do
+			league_table.matches.push("Liverpool 1 - 1 Man Utd")
+			league_table.matches.replace(["Man Utd 3 - 0 Liverpool"])
+
+			expect(league_table.get_points("Man Utd")).to eq(1)
+			expect(league_table.get_draws("Man Utd")).to eq(1)
+			
+			league_table.reset_standings
+
+			expect(league_table.get_points("Man Utd")).to eq(3)
+			expect(league_table.get_draws("Man Utd")).to eq(0)
 		end
 	end
 
