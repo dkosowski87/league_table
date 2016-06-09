@@ -10,8 +10,7 @@ RSpec.describe LeagueTable do
 		end
 
 		it "returns an array of matches when matches are provided" do
-			league_table.matches.push("Man Utd 3 - 0 Liverpool")
-			league_table.matches.push("Liverpool 1 - 1 Man Utd")
+			league_table.matches.push("Man Utd 3 - 0 Liverpool", "Liverpool 1 - 1 Man Utd")
 			expect(league_table.matches).to include("Man Utd 3 - 0 Liverpool")
 			expect(league_table.matches).to include("Liverpool 1 - 1 Man Utd")
 		end
@@ -23,19 +22,19 @@ RSpec.describe LeagueTable do
 			league_table.update_standings("Schalke 04 3 - 3 Man Utd")
 		end
 
-		it 'updates the points of the teams that played a match' do
+		it "updates the points of the teams that played a match" do
 			expect(league_table.get_points("Man Utd")).to eq(4)
 			expect(league_table.get_points("Schalke 04")).to eq(1)
 		end
 
-		it 'updates the goals_for of the teams that played a match' do
+		it "updates the goals_for of the teams that played a match" do
 			expect(league_table.get_goals_for("Man Utd")).to eq(13)
 			expect(league_table.get_goals_for("Schalke 04")).to eq(3)
 			expect(league_table.get_goals_against("Man Utd")).to eq(3)
 			expect(league_table.get_goals_against("Schalke 04")).to eq(13)
 		end
 
-		it 'updates the results of the teams that played a match' do
+		it "updates the results of the teams that played a match" do
 			expect(league_table.get_wins("Man Utd")).to eq(1)
 			expect(league_table.get_losses("Schalke 04")).to eq(1)
 			expect(league_table.get_draws("Man Utd")).to eq(1)
