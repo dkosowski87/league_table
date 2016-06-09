@@ -11,19 +11,12 @@ class MatchTable < Array
 		end
 	end
 
-	%w(unshift insert pop shift delete_at delete []= reject! 
-		slice! select! map! uniq! keep_if collect!).each do |method_name|
+	%w(shift unshift pop insert delete_at delete delete_if keep_if replace
+		reject! slice! select! map! collect! uniq! []= + -).each do |method_name|
 		define_method(method_name) do |*args, &block|
 		 	super(*args, &block)
 		 	@league_table.reset_standings
 		end
 	end
-
-	# instance_methods.select { |method_name| method_name.to_s.match /[a-z]/ }.each do |method_name|
-	# 	define_method(method_name) do |*args, &block|
-	# 		super(*args, &block)
-	# 		@league_table.reset_standings
-	#  	end
-	# end
 
 end
